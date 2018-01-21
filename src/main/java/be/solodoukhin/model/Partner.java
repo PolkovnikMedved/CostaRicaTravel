@@ -1,8 +1,11 @@
 package be.solodoukhin.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-//TODO LINK WITH HOT WORD
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "partner")
 public class Partner {
@@ -57,6 +60,10 @@ public class Partner {
 
     @Column
     private String country;
+
+    @OneToMany(mappedBy = "partner")
+    @JsonManagedReference
+    private Set<HotWord> hotWords = new HashSet<>();
 
     public Partner() {}
 
@@ -188,6 +195,14 @@ public class Partner {
         this.country = country;
     }
 
+    public Set<HotWord> getHotWords() {
+        return hotWords;
+    }
+
+    public void setHotWords(Set<HotWord> hotWords) {
+        this.hotWords = hotWords;
+    }
+
     @Override
     public String toString() {
         return "Partner{" +
@@ -207,6 +222,7 @@ public class Partner {
                 ", tripAdvisorLink='" + tripAdvisorLink + '\'' +
                 ", type=" + type +
                 ", country='" + country + '\'' +
+                ", hotWords=" + hotWords +
                 '}';
     }
 }

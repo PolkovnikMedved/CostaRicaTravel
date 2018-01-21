@@ -1,5 +1,7 @@
 package be.solodoukhin.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class HotWord {
 
     @ManyToOne
     @JoinColumn(name = "fk_partner_id")
+    @JsonBackReference
     private Partner partner;
 
     public HotWord() {}

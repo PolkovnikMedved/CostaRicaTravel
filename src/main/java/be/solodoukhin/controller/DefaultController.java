@@ -12,12 +12,12 @@ public class DefaultController {
     @Value("${app.version}")
     private String projectVersion;
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public String sayHello(){
         return "Hello world !";
     }
 
-    @GetMapping(path = "/version")
+    @GetMapping(path = "/version", produces = "application/json")
     public String getVersion(){
         return this.projectVersion;
     }
